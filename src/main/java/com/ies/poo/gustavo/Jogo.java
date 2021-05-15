@@ -6,15 +6,12 @@ import java.util.List;
 
 public class Jogo {
 	private List<Jogador> jogadores;
-	private List<Jogada> jogadas;
 	private List<Opcoes> opcoes;
 	private Tabuleiro tabuleiro;
 	private List<Regra> regrasDeVitoria;
 	
-	// Feito em aula
 	public Jogo() {
 		jogadores = new ArrayList<Jogador>();
-		jogadas = new ArrayList<Jogada>();
 		opcoes = Arrays.asList(Opcoes.XIS, Opcoes.BOLINHA);
 		tabuleiro = new Tabuleiro();
 		List<Casa> casas = tabuleiro.obterCasas();
@@ -48,7 +45,28 @@ public class Jogo {
 
 	public Opcoes obterOpcaoVencedora() {
 		Regra regraDeVitoria = deUmaRegraVencedora();
+		System.out.println(regraDeVitoria);
+		System.out.println("aqui");
 		return regraDeVitoria.obterOpcaoVitoriosa();
+	}
+	
+	public Opcoes obterOpcaoDerrotada() {
+        Opcoes opcaoVitoriosa = obterOpcaoVencedora();
+        for(Opcoes opcao: opcoes) {
+            if(opcao != opcaoVitoriosa) {
+                return opcao;
+            }
+        }
+        return null;
+    }
+	
+	public Opcoes obterResultado() {
+		try {
+			Opcoes haOpcaoVitoriosa = obterOpcaoVencedora();
+			return haOpcaoVitoriosa;
+		} catch(Exception e){
+			return null;
+		}
 	}
 
 	private Regra deUmaRegraVencedora() {
@@ -60,9 +78,13 @@ public class Jogo {
 		return null;
 	}
 
-	public Jogador obterVencedor() {
+	public Jogador obterJogadorVencedor() {
 		Opcoes opcaoVitoriosa = obterOpcaoVencedora();
 		return jogadores.get(opcoes.indexOf(opcaoVitoriosa));
 	}
-
+	
+	public Jogador obterJogadorPerdedor() {
+		Opcoes opcaoDerrota = obterOpcaoDerrotada();
+		return jogadores.get(opcoes.indexOf(opcaoDerrota));
+	}	
 }
