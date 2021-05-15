@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class AppTest {
+	
 	@Test
 	public void registrandoDoisJogadores() throws Exception {
 		Jogador jogadorUm = new Jogador("Lucas");
@@ -21,7 +22,7 @@ public class AppTest {
 	@Test
 	public void oJogo() throws Exception {
 		Jogo jogo = new Jogo();
-		
+	
 		Tabuleiro tabuleiro =  jogo.obterTabuleiro();
 		
 		assertEquals(9, tabuleiro.obterCasas().size());

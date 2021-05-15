@@ -18,9 +18,19 @@ public class Jogo {
 		opcoes = Arrays.asList(Opcoes.XIS, Opcoes.BOLINHA);
 		tabuleiro = new Tabuleiro();
 		List<Casa> casas = tabuleiro.obterCasas();
+		listaDeRegras(casas);
+	}
+
+	private void listaDeRegras(List<Casa> casas) {
 		regrasDeVitoria = new ArrayList<>();
 		regrasDeVitoria.add(new Regra(casas.get(0), casas.get(1), casas.get(2)));
+		regrasDeVitoria.add(new Regra(casas.get(3), casas.get(4), casas.get(5)));
+		regrasDeVitoria.add(new Regra(casas.get(6), casas.get(7), casas.get(8)));
+		regrasDeVitoria.add(new Regra(casas.get(0), casas.get(3), casas.get(6)));
+		regrasDeVitoria.add(new Regra(casas.get(1), casas.get(4), casas.get(7)));
+		regrasDeVitoria.add(new Regra(casas.get(2), casas.get(5), casas.get(8)));
 		regrasDeVitoria.add(new Regra(casas.get(0), casas.get(4), casas.get(8)));
+		regrasDeVitoria.add(new Regra(casas.get(2), casas.get(4), casas.get(6)));
 	}
 	
 	public Opcoes registrarJogador(Jogador jogador) {
