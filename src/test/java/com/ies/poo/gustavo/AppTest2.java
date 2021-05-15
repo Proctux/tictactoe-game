@@ -23,6 +23,12 @@ public class AppTest2 {
 	}
 	
 	@Test
+	public void iniciandoOJogo() throws Exception {
+		Tabuleiro tabuleiro = tictactoe.obterTabuleiro();
+		assertEquals(9, tabuleiro.obterCasas().size());
+	}
+	
+	@Test
 	public void jogadorUmOpcaoXis() throws Exception {
 		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(baiano);
 		assertEquals(Opcoes.XIS, opcaoDoJogadorUm);
@@ -41,13 +47,13 @@ public class AppTest2 {
 		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(baiano);
 		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(lucas);
 		
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(0));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(1));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(4));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(3));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(2));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(8));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(6));
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterPrimeiraCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSegundaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuintaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterNonaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSetimaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterQuartaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterTerceiraCasa());
 		
 		assertEquals(Opcoes.XIS, tictactoe.obterOpcaoVencedora());
 	}
@@ -57,15 +63,15 @@ public class AppTest2 {
 		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(nilo);
 		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(baiano);
 		
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(8));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(1));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(7));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(6));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(5));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(3));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(0));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(4));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(2));
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterNonaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSegundaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterOitavaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSetimaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSextaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuartaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterPrimeiraCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuintaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterTerceiraCasa());
 		
 		assertEquals(Opcoes.BOLINHA, tictactoe.obterOpcaoVencedora());
 	}
@@ -75,20 +81,66 @@ public class AppTest2 {
 		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(nilo);
 		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(luiz);
 		
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(4));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(0));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(2));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(6));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(3));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(5));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(7));
-		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterCasas().get(1));
-		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterCasas().get(8));
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuartaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterPrimeiraCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterTerceiraCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSetimaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuintaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSextaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterOitavaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSegundaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterNonaCasa());
 		
-		assertEquals(Opcoes.XIS, tictactoe.obterOpcaoVencedora());
-		assertEquals(baiano, tictactoe.obterVencedor());
+		assertNull(tictactoe.obterResultado());
+		
 	}
 	
+	@Test
+	public void verificandoOpcaoDerrotada() throws Exception {
+		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(lucas);
+		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(luiz);
+		
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSegundaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterQuintaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuartaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterOitavaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterPrimeiraCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSetimaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterTerceiraCasa());
+		
+		assertEquals(Opcoes.BOLINHA, tictactoe.obterOpcaoDerrotada());
+	}
 	
+	@Test
+	public void verificandoJogadorPerdedor() throws Exception {
+		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(baiano);
+		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(luiz);
+		
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterPrimeiraCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSegundaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterQuintaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterNonaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSetimaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterTerceiraCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterQuartaCasa());
+		
+		assertEquals(baiano, tictactoe.obterJogadorPerdedor());
+	}
+	
+	@Test
+	public void verificandoJogadorVencedor() throws Exception {
+		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(baiano);
+		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(nilo);
+		
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterPrimeiraCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterSetimaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterQuintaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterNonaCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterOitavaCasa());
+		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterTerceiraCasa());
+		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSegundaCasa());
+		
+		assertEquals(baiano, tictactoe.obterJogadorVencedor());
+	}
 	
 }
