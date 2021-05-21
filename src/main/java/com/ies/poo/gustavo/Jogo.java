@@ -45,8 +45,6 @@ public class Jogo {
 
 	public Opcoes obterOpcaoVencedora() {
 		Regra regraDeVitoria = deUmaRegraVencedora();
-		System.out.println(regraDeVitoria);
-		System.out.println("aqui");
 		return regraDeVitoria.obterOpcaoVitoriosa();
 	}
 	
@@ -86,5 +84,14 @@ public class Jogo {
 	public Jogador obterJogadorPerdedor() {
 		Opcoes opcaoDerrota = obterOpcaoDerrotada();
 		return jogadores.get(opcoes.indexOf(opcaoDerrota));
+	}
+
+	public List<Regra> obterRegras() {
+		return regrasDeVitoria;
+		
+	}
+
+	public Regra obterRegraVencedora() {
+		return deUmaRegraVencedora();
 	}	
 }

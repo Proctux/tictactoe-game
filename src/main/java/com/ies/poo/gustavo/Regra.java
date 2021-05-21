@@ -13,14 +13,27 @@ public class Regra {
 	}
 
 	public boolean temVitoria() {
-		return casa1.obterOpcao().equals(casa2.obterOpcao()) && casa2.obterOpcao().equals(casa3.obterOpcao());
-		
+		return nenhumaCasaNula() && casa1.obterOpcao().equals(casa2.obterOpcao()) && casa2.obterOpcao().equals(casa3.obterOpcao());
+	}
+
+	private boolean nenhumaCasaNula() {
+		return casa1.obterOpcao() != null && casa2.obterOpcao() != null && casa3.obterOpcao() != null;
 	}
 
 	public Opcoes obterOpcaoVitoriosa() {
 		return casa1.obterOpcao();
 	}
+
+	public Casa obterCasaUm() {
+		return casa1;
+	}
 	
+	public Casa obterCasaDois() {
+		return casa2;
+	}
 	
+	public Casa obterCasaTres() {
+		return casa3;
+	}
 	
 }
