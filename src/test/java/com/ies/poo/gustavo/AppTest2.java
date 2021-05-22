@@ -14,11 +14,10 @@ public class AppTest2 {
 	
 	@Before
 	public void configuracao() {
-		lucas = new Jogador("Lucas");
-		nilo = new Jogador("Nilo");
-		baiano = new Jogador("Baiano");
-		luiz = new Jogador("Luiz");
-		
+		lucas = new Jogador("Lucas", 0, 0, 0);
+		nilo = new Jogador("Nilo", 0, 0, 0);
+		baiano = new Jogador("Baiano", 0, 0, 0);
+		luiz = new Jogador("Luiz", 0, 0, 0);
 		tictactoe = new Jogo();
 	}
 	
@@ -115,6 +114,8 @@ public class AppTest2 {
 	public void verificandoJogadorPerdedor() throws Exception {
 		Opcoes opcaoDoJogadorUm = tictactoe.registrarJogador(baiano);
 		Opcoes opcaoDoJogadorDois = tictactoe.registrarJogador(luiz);
+		ConexaoComBancoDeDados conexao = new ConexaoComBancoDeDados();
+		
 		
 		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterPrimeiraCasa());
 		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterSegundaCasa());
@@ -124,7 +125,14 @@ public class AppTest2 {
 		tictactoe.jogar(opcaoDoJogadorUm, tictactoe.obterTabuleiro().obterTerceiraCasa());
 		tictactoe.jogar(opcaoDoJogadorDois, tictactoe.obterTabuleiro().obterQuartaCasa());
 		
+		assertEquals(luiz, tictactoe.obterJogadorVencedor());
 		assertEquals(baiano, tictactoe.obterJogadorPerdedor());
+		
+		luiz.setQuantidadeVitorias(1);
+		baiano.setQuantidadeDerrotas(1);
+		
+		conexao.ganhadorDaPartida(luiz);
+		conexao.perdedorDaPartida(baiano);
 	}
 	
 	@Test

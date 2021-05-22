@@ -4,25 +4,16 @@ public class Jogador {
 
 	private Integer id;
 	private String nome;
-	private Integer quantidadePontuacao;
-	private Integer quantidadePartidas;
 	private Integer quantidadeVitorias;
 	private Integer quantidadeDerrotas;
 	private Integer quantidadeEmpates;
 	
 	// Feito em aula
-	public Jogador(String nome) {
+	public Jogador(String nome, Integer quantidadeVitorias, Integer quantidadeDerrotas, Integer quantidadeEmpates) {
 		this.nome = nome;
-	}
-
-	public Jogador(Integer id, String nome) {
-		this.id = id;
-		this.nome = nome;
-	}
-
-	public String dadosDoJogador() {
-		return id + "\n" + nome + "\n" + quantidadePontuacao + "\n" + quantidadePartidas + "\n" + quantidadeVitorias
-				+ quantidadeDerrotas + "\n" + quantidadeEmpates;
+		this.quantidadeVitorias = quantidadeVitorias;
+		this.quantidadeDerrotas = quantidadeDerrotas;
+		this.quantidadeEmpates = quantidadeEmpates;
 	}
 
 	public Integer getId() {
@@ -39,22 +30,6 @@ public class Jogador {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Integer getQuantidadePontuacao() {
-		return quantidadePontuacao;
-	}
-
-	public void setClassificacao(Integer classificacao) {
-		this.quantidadePontuacao = classificacao;
-	}
-
-	public Integer getQuantidadePartidas() {
-		return quantidadePartidas;
-	}
-
-	public void setQuantidadePartidas(Integer quantidadePartidas) {
-		this.quantidadePartidas = quantidadePartidas;
 	}
 
 	public Integer getQuantidadeVitorias() {
