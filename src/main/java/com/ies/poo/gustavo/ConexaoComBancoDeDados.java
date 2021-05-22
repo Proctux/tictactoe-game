@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConexaoComBancoDeDados {
@@ -12,21 +13,27 @@ public class ConexaoComBancoDeDados {
 		String url = "jdbc:postgresql://database-1-poo.cgp4xmrdojog.us-east-1.rds.amazonaws.com:5432/postgres";
 		String masterUser = "dbpoo2021";
 		String masterKey = "#DBp002021";
-		return (Connection) DriverManager.getConnection(url, masterUser, masterKey);
+		return DriverManager.getConnection(url, masterUser, masterKey);
 	}
 
-	public void persistir(Jogador jogador) throws SQLException, IOException {
+	public void inserirJogador(Jogador jogador) throws SQLException, IOException {
 		Connection conexao = getConexao();
 
-		PreparedStatement afirmacao = ((java.sql.Connection) conexao).prepareStatement(
-				"INSERT INTO apspoo.jogador (nm_jogador, qt_vitorias, qt_derrotas, qt_empates) VALUES (?, ?, ?, ?);");
+		PreparedStatement afirmacao = conexao.prepareStatement(
+				"INSERT INTO apspoo.jogador (nm_jogador, qt_vitorias, qt_derrotas, qt_empates) VALUES (?, ?, ?, ?) RETURNING cd_jogador;");
 
 		afirmacao.setString(1, jogador.getNome());
 		afirmacao.setInt(2, jogador.getQuantidadeVitorias());
 		afirmacao.setInt(3, jogador.getQuantidadeDerrotas());
 		afirmacao.setInt(4, jogador.getQuantidadeEmpates());
-
+		
+		
 		afirmacao.execute();
+		ResultSet retorno = afirmacao.getResultSet();
+		retorno.next();	
+
+		jogador.setId(retorno.getInt(1));
+		
 		afirmacao.close();
 		conexao.close();
 	}
@@ -34,7 +41,7 @@ public class ConexaoComBancoDeDados {
 	public void ganhadorDaPartida(Jogador jogador) throws SQLException, IOException {
 		Connection conexao = getConexao();
 
-		PreparedStatement vitoria = ((java.sql.Connection) conexao).prepareStatement("UPDATE apspoo.jogador SET qt_vitorias = ? WHERE nm_jogador = ?;");
+		PreparedStatement vitoria = conexao.prepareStatement("UPDATE apspoo.jogador SET qt_vitorias = ? WHERE nm_jogador = ?;");
 
 		vitoria.setInt(1, jogador.getQuantidadeVitorias());
 		vitoria.setString(2, jogador.getNome());
@@ -47,13 +54,28 @@ public class ConexaoComBancoDeDados {
 	public void perdedorDaPartida(Jogador jogador) throws SQLException, IOException {
 		Connection conexao = getConexao();
 
-		PreparedStatement derrota = ((java.sql.Connection) conexao).prepareStatement("UPDATE apspoo.jogador SET qt_derrotas = ? WHERE nm_jogador = ?;");
+		PreparedStatement derrota = conexao.prepareStatement("UPDATE apspoo.jogador SET qt_derrotas = ? WHERE nm_jogador = ?;");
 
 		derrota.setInt(1, jogador.getQuantidadeDerrotas());
 		derrota.setString(2, jogador.getNome());
 
 		derrota.execute();
 		derrota.close();
+		conexao.close();
+	}
+
+	public void atualizaJogador(Jogador jogador) throws SQLException {
+		Connection conexao = getConexao();
+
+		PreparedStatement dados = conexao.prepareStatement("UPDATE apspoo.jogador SET qt_vitorias = ?, qt_derrotas = ?, qt_empates = ? WHERE cd_jogador = ?;");
+
+		dados.setInt(1, jogador.getQuantidadeVitorias());
+		dados.setInt(2, jogador.getQuantidadeDerrotas());
+		dados.setInt(3, jogador.getQuantidadeEmpates());
+		dados.setInt(4, jogador.getId());
+
+		dados.execute();
+		dados.close();
 		conexao.close();
 	}
 }

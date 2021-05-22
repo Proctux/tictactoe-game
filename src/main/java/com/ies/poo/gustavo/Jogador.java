@@ -9,11 +9,11 @@ public class Jogador {
 	private Integer quantidadeEmpates;
 	
 	// Feito em aula
-	public Jogador(String nome, Integer quantidadeVitorias, Integer quantidadeDerrotas, Integer quantidadeEmpates) {
+	public Jogador(String nome) {
 		this.nome = nome;
-		this.quantidadeVitorias = quantidadeVitorias;
-		this.quantidadeDerrotas = quantidadeDerrotas;
-		this.quantidadeEmpates = quantidadeEmpates;
+		this.quantidadeVitorias = 0;
+		this.quantidadeDerrotas = 0;
+		this.quantidadeEmpates = 0;
 	}
 
 	public Integer getId() {
@@ -36,10 +36,6 @@ public class Jogador {
 		return quantidadeVitorias;
 	}
 
-	public void setQuantidadeVitorias(Integer quantidadeVitorias) {
-		this.quantidadeVitorias = quantidadeVitorias;
-	}
-
 	public Integer getQuantidadeDerrotas() {
 		return quantidadeDerrotas;
 	}
@@ -54,6 +50,18 @@ public class Jogador {
 
 	public void setQuantidadeEmpates(Integer quantidadeEmpates) {
 		this.quantidadeEmpates = quantidadeEmpates;
+	}
+
+	public void incrementaVitoria() {
+		quantidadeVitorias++;
+	}
+	
+	public void incrementaDerrota() {
+		quantidadeDerrotas++;
+	}
+	
+	public void incrementaEmpate() {
+		quantidadeEmpates++;
 	}
 
 }
