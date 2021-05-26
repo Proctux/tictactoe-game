@@ -29,18 +29,18 @@ public class AppTest2 {
 
 	}
 
-//	@Test
-//	public void registrarJogadoresNoBanco() throws Exception {
-//		conexao.inserirJogador(lucas);
-//		conexao.inserirJogador(baiano);
-//		conexao.inserirJogador(luiz);
-//		conexao.inserirJogador(nilo);
-//
-//		assertNotNull(lucas.getId());
-//		assertNotNull(nilo.getId());
-//		assertNotNull(baiano.getId());
-//		assertNotNull(luiz.getId());
-//	}
+	@Test
+	public void registrarJogadoresNoBanco() throws Exception {
+		conexao.inserirJogador(lucas);
+		conexao.inserirJogador(baiano);
+		conexao.inserirJogador(luiz);
+		conexao.inserirJogador(nilo);
+
+		assertNotNull(lucas.getId());
+		assertNotNull(nilo.getId());
+		assertNotNull(baiano.getId());
+		assertNotNull(luiz.getId());
+	}
 
 	@Test
 	public void iniciandoOJogo() throws Exception {
