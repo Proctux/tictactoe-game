@@ -1,0 +1,41 @@
+
+# Vitórias, empates e derrotas de um determinado jogador:
+---------------------------------------------------------
+
+SELECT * FROM apspoo.jogador WHERE cd_jogador = 1;
+
+---------------------------------------------------------
+
+
+# Quantidade de jogadores cadastrados
+---------------------------------------------------------
+
+SELECT count(cd_jogador) FROM apspoo.jogador;
+
+---------------------------------------------------------
+
+
+# Quantidade de partidas jogadas
+---------------------------------------------------------
+
+SELECT count(cd_partida) FROM apspoo.partida;
+
+---------------------------------------------------------
+
+
+# Jogadores ordenados pela quantidade de vitórias
+---------------------------------------------------------
+
+SELECT nm_jogador, qt_vitorias FROM apspoo.jogador ORDER BY qt_vitorias DESC;
+
+---------------------------------------------------------
+
+
+# Todos os adversários de um determinado jogador e o número de vezes que se enfrentaram
+---------------------------------------------------------
+
+SELECT nm_ganhador, nm_perdedor FROM apspoo.resultado_partida WHERE nm_perdedor = 'Luiz';
+
+SELECT count(nm_ganhador) FROM apspoo.resultado_partida WHERE nm_perdedor = 'Luiz';
+
+---------------------------------------------------------
