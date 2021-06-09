@@ -11,8 +11,8 @@ public class ConexaoComBancoDeDados {
 
 	public Connection getConexao() throws SQLException {
 		String url = "jdbc:postgresql://database-1-poo.cgp4xmrdojog.us-east-1.rds.amazonaws.com:5432/postgres";
-		String masterUser = "dbpoo2021";
-		String masterKey = "#DBp002021";
+		String masterUser //HOST;
+		String masterKey //PASSWORD;
 		return DriverManager.getConnection(url, masterUser, masterKey);
 	}
 
